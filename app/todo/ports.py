@@ -18,6 +18,9 @@ class ITodoRepository(ABC):
     def update_finish_by_id(self, todo: Todo) -> bool:
         pass
 
+    def soft_delete_by_id(self, todo: Todo) -> bool:
+        pass
+
 
 class ITodoUseCases(ABC):
     def create_todo(self, title: str, description: str) -> bool:
@@ -33,4 +36,7 @@ class ITodoUseCases(ABC):
         pass
 
     def set_finish_by_id(self, todo_id: str) -> bool:
+        pass
+
+    def delete_by_id(self, todo_id: str) -> bool:
         pass

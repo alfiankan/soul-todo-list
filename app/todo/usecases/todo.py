@@ -24,7 +24,7 @@ class TodoUseCase(ITodoUseCases):
         return self.todo_repository.save(new_todo)
 
     def get_all_todo(self) -> list[Todo]:
-        return list(self.todo_repository.get_all().values())
+        return list(filter(lambda todo: todo.deleted_at is None , list(self.todo_repository.get_all().values())))
 
     def get_by_id(self, todo_id: int) -> Todo:
         return self.todo_repository.get_by_id(todo_id)
@@ -44,3 +44,6 @@ class TodoUseCase(ITodoUseCases):
             finished_at=datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S'),
         )
         return self.todo_repository.update_finish_by_id(todo)
+
+    def delete_by_id(self, todo_id: str) -> bool:
+        return self.todo_repository.soft_delete_by_id(todo_id)

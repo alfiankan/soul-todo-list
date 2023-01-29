@@ -70,3 +70,12 @@ def test_finish_todo_repository():
     ))
 
     assert ok
+
+
+def test_delete_todo_repository():
+    repo = TodoRepositoryInMemory()
+    saved_id = seed_todo(repo)
+    # test get by id
+    ok = repo.soft_delete_by_id(saved_id)
+
+    assert ok
