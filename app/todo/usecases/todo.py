@@ -28,3 +28,12 @@ class TodoUseCase(ITodoUseCases):
 
     def get_by_id(self, todo_id: int) -> Todo:
         return self.todo_repository.get_by_id(todo_id)
+
+    def update_by_id(self, title: str, description: str, todo_id: str) -> bool:
+        todo = Todo(
+            Id=todo_id,
+            title=title,
+            description=description,
+            updated_at=datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S'),
+        )
+        return self.todo_repository.update_by_id(todo)

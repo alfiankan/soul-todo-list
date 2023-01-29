@@ -23,7 +23,7 @@ class TodoHttpHandler:
             return BaseJsonResponse.validation_error(valErr)
 
         try:
-            self.todo_usecase.create_todo(title, desc)
+            assert self.todo_usecase.create_todo(title, desc)
             return Response(
                 BaseJsonResponse(message='Success Created', data={}).to_json(),
                 status=201,
@@ -69,6 +69,31 @@ class TodoHttpHandler:
             print(e)
             return BaseJsonResponse.internal_server_error()
 
+    def handle_update_todo(self, todo_id: str) -> Response:
+        title = request.json['title']
+        desc = request.json['description']
+        valErr = [
+            validateIsNotEmpty(title, 'title'),
+            validateIsTypeValid(title, str, 'title'),
+            validateIsNotEmpty(desc, 'description'),
+            validateIsTypeValid(desc, str, 'description'),
+        ]
+
+        if isValidationError(valErr):
+            return BaseJsonResponse.validation_error(valErr)
+
+        try:
+            assert self.todo_usecase.update_by_id(title, desc, todo_id)
+            return Response(
+                BaseJsonResponse(message='Success Updated', data={}).to_json(),
+                status=200,
+                content_type='application/json',
+            )
+        except Exception as e:
+            # log here
+            print(e)
+            return BaseJsonResponse.internal_server_error()
+
     def handle(self):
         @self.http_server.route('/todo', methods=['POST'])
         def create_todo():
@@ -81,3 +106,7 @@ class TodoHttpHandler:
         @self.http_server.route('/todo/<todo_id>', methods=['GET'])
         def get_todo_by_id(todo_id: str):
             return self.handle_get_todo_by_id(todo_id)
+
+        @self.http_server.route('/todo/<todo_id>', methods=['PUT'])
+        def update_todo_by_id(todo_id: str):
+            return self.handle_update_todo(todo_id)

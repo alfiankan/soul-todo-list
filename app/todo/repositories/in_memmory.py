@@ -27,3 +27,13 @@ class TodoRepositoryInMemory(ITodoRepository):
 
     def get_by_id(self, todo_id: str) -> Todo:
         return self.todos[todo_id]
+
+    def update_by_id(self, todo: Todo) -> bool:
+        try:
+            self.todos[todo.Id].title = todo.title
+            self.todos[todo.Id].description = todo.description
+            self.todos[todo.updated_at] = todo.updated_at
+            return True
+        except Exception as e:
+            print(e)
+            return False
