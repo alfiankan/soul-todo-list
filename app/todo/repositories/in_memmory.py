@@ -1,9 +1,9 @@
 from threading import Lock
 from app.todo.domain import Todo
-from app.todo.ports import TodoRepository
+from app.todo.ports import ITodoRepository
 
 
-class TodoRepositoryInMemory(TodoRepository):
+class TodoRepositoryInMemory(ITodoRepository):
     """
     data layer for todo using memory and mutex to avoid
     race condition

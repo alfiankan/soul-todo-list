@@ -2,7 +2,7 @@ from abc import ABC
 from app.todo.domain import Todo
 
 
-class TodoRepository(ABC):
+class ITodoRepository(ABC):
     def save(self, todo: Todo) -> bool:
         pass
 
@@ -10,5 +10,13 @@ class TodoRepository(ABC):
         pass
 
     def get_by_id(self, todo_id: int) -> Todo:
+        pass
+
+
+class ITodoUseCases(ABC):
+    def create_todo(self, title: str, description: str) -> bool:
+        pass
+
+    def get_all_todo(self) -> dict[int, Todo]:
         pass
 

@@ -12,7 +12,7 @@ class Todo:
     Id: int
     title: str
     description: str
-    finished_at: Union[str, None]
     created_at: str
-    updated_at: Union[str, None]
-    deleted_at: Union[str, None]
+    finished_at: Union[str, None] = None
+    updated_at: Union[str, None] = None
+    deleted_at: Union[str, None] = None
