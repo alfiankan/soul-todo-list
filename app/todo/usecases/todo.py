@@ -37,3 +37,10 @@ class TodoUseCase(ITodoUseCases):
             updated_at=datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S'),
         )
         return self.todo_repository.update_by_id(todo)
+
+    def set_finish_by_id(self, todo_id: str) -> bool:
+        todo = Todo(
+            Id=todo_id,
+            finished_at=datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S'),
+        )
+        return self.todo_repository.update_finish_by_id(todo)

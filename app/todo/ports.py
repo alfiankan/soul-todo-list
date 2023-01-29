@@ -15,6 +15,9 @@ class ITodoRepository(ABC):
     def update_by_id(self, todo: Todo) -> bool:
         pass
 
+    def update_finish_by_id(self, todo: Todo) -> bool:
+        pass
+
 
 class ITodoUseCases(ABC):
     def create_todo(self, title: str, description: str) -> bool:
@@ -27,4 +30,7 @@ class ITodoUseCases(ABC):
         pass
 
     def update_by_id(self, title: str, description: str, todo_id: str) -> bool:
+        pass
+
+    def set_finish_by_id(self, todo_id: str) -> bool:
         pass

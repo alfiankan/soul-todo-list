@@ -58,3 +58,15 @@ def test_updatebyid_todo_repository():
     ))
 
     assert ok
+
+
+def test_finish_todo_repository():
+    repo = TodoRepositoryInMemory()
+    saved_id = seed_todo(repo)
+    # test get by id
+    ok = repo.update_finish_by_id(Todo(
+        Id=saved_id,
+        finished_at=datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S'),
+    ))
+
+    assert ok

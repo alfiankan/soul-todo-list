@@ -32,7 +32,15 @@ class TodoRepositoryInMemory(ITodoRepository):
         try:
             self.todos[todo.Id].title = todo.title
             self.todos[todo.Id].description = todo.description
-            self.todos[todo.updated_at] = todo.updated_at
+            self.todos[todo.Id].updated_at = todo.updated_at
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def update_finish_by_id(self, todo: Todo) -> bool:
+        try:
+            self.todos[todo.Id].finished_at = todo.finished_at
             return True
         except Exception as e:
             print(e)

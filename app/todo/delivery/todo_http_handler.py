@@ -94,6 +94,20 @@ class TodoHttpHandler:
             print(e)
             return BaseJsonResponse.internal_server_error()
 
+    def handle_finish_todo(self, todo_id: str) -> Response:
+
+        try:
+            assert self.todo_usecase.set_finish_by_id(todo_id)
+            return Response(
+                BaseJsonResponse(message='Success Todo Finished', data={}).to_json(),
+                status=200,
+                content_type='application/json',
+            )
+        except Exception as e:
+            # log here
+            print(e)
+            return BaseJsonResponse.internal_server_error()
+
     def handle(self):
         @self.http_server.route('/todo', methods=['POST'])
         def create_todo():
@@ -110,3 +124,7 @@ class TodoHttpHandler:
         @self.http_server.route('/todo/<todo_id>', methods=['PUT'])
         def update_todo_by_id(todo_id: str):
             return self.handle_update_todo(todo_id)
+
+        @self.http_server.route('/todo/<todo_id>/finish', methods=['PATCH'])
+        def finish_todo_by_id(todo_id: str):
+            return self.handle_finish_todo(todo_id)

@@ -41,3 +41,13 @@ def test_usecase_update_todo():
 
     # update
     assert usecase.update_by_id('edited', 'edited', saved_id)
+
+
+def test_usecase_finish_todo():
+    repo = TodoRepositoryInMemory()
+    usecase = TodoUseCase(repo)
+    seed_usecase(usecase)
+    saved_id = usecase.get_all_todo()[0].Id
+
+    # update
+    assert usecase.set_finish_by_id(saved_id)
