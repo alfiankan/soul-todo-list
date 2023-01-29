@@ -6,7 +6,7 @@ class ITodoRepository(ABC):
     def save(self, todo: Todo) -> bool:
         pass
 
-    def get_all(self) -> dict[int, Todo]:
+    def get_all(self) -> dict[str, Todo]:
         pass
 
     def get_by_id(self, todo_id: int) -> Todo:
@@ -18,4 +18,7 @@ class ITodoUseCases(ABC):
         pass
 
     def get_all_todo(self) -> list[Todo]:
+        pass
+
+    def get_by_id(self, todo_id: str) -> Todo:
         pass

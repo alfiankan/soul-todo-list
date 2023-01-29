@@ -11,7 +11,7 @@ class TodoRepositoryInMemory(ITodoRepository):
 
     def __init__(self) -> ITodoRepository:
         self.mutex: Lock = Lock()
-        self.todos: dict[int, Todo] = dict()
+        self.todos: dict[str, Todo] = dict()
 
     def save(self, todo: Todo) -> bool:
         try:
@@ -22,8 +22,8 @@ class TodoRepositoryInMemory(ITodoRepository):
             print("log :", err)
             return False
 
-    def get_all(self) -> dict[int, Todo]:
+    def get_all(self) -> dict[str, Todo]:
         return self.todos
 
-    def get_by_id(self, todo_id: int) -> Todo:
+    def get_by_id(self, todo_id: str) -> Todo:
         return self.todos[todo_id]

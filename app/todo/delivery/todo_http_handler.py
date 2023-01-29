@@ -48,6 +48,27 @@ class TodoHttpHandler:
             print(e)
             return BaseJsonResponse.internal_server_error()
 
+    def handle_get_todo_by_id(self, todo_id: str) -> Response:
+
+        valErr = [
+            validateIsTypeValid(todo_id, str, 'todo id'),
+        ]
+
+        if isValidationError(valErr):
+            return BaseJsonResponse.validation_error(valErr)
+
+        try:
+            todo = self.todo_usecase.get_by_id(todo_id)
+            return Response(
+                BaseJsonResponse(message='Success Retreiving Todos', data=todo).to_json(),
+                status=200,
+                content_type='application/json',
+            )
+        except Exception as e:
+            # log here
+            print(e)
+            return BaseJsonResponse.internal_server_error()
+
     def handle(self):
         @self.http_server.route('/todo', methods=['POST'])
         def create_todo():
@@ -56,3 +77,7 @@ class TodoHttpHandler:
         @self.http_server.route('/todo', methods=['GET'])
         def get_todos():
             return self.handle_get_all_todos()
+
+        @self.http_server.route('/todo/<todo_id>', methods=['GET'])
+        def get_todo_by_id(todo_id: str):
+            return self.handle_get_todo_by_id(todo_id)

@@ -9,7 +9,7 @@ class Todo:
     """
     Todo object data structure
     """
-    Id: int
+    Id: str
     title: str
     description: str
     created_at: str

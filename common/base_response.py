@@ -11,6 +11,7 @@ class BaseJsonResponse:
     message: str
     data: Any
 
+    @staticmethod
     def validation_error(errors: list[str]) -> Response:
         return Response(
             BaseJsonResponse(
@@ -21,6 +22,7 @@ class BaseJsonResponse:
             content_type='application/json'
         )
 
+    @staticmethod
     def internal_server_error() -> Response:
         return Response(
             BaseJsonResponse(
