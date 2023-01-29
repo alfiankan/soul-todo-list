@@ -1,0 +1,7 @@
+dataclasses
+typing
+dataclasses_json
+flask
+requests
+faker
+pytest
