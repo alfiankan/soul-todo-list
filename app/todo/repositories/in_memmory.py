@@ -9,7 +9,7 @@ class TodoRepositoryInMemory(ITodoRepository):
     race condition
     """
 
-    def __init__(self) -> None:
+    def __init__(self) -> ITodoRepository:
         self.mutex: Lock = Lock()
         self.todos: dict[int, Todo] = dict()
 

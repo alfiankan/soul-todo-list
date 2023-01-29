@@ -10,7 +10,7 @@ class TodoUseCase(ITodoUseCases):
     Todo use case business logic
     """
 
-    def __init__(self, todo_repository: ITodoRepository) -> None:
+    def __init__(self, todo_repository: ITodoRepository) -> ITodoUseCases:
         self.todo_repository = todo_repository
 
     def create_todo(self, title: str, description: str) -> bool:
