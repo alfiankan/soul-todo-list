@@ -23,5 +23,5 @@ class TodoUseCase(ITodoUseCases):
 
         return self.todo_repository.save(new_todo)
 
-    def get_all_todo(self) -> dict[int, Todo]:
-        return self.todo_repository.get_all()
+    def get_all_todo(self) -> list[Todo]:
+        return self.todo_repository.get_all().values()

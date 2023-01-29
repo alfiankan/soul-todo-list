@@ -17,6 +17,5 @@ class ITodoUseCases(ABC):
     def create_todo(self, title: str, description: str) -> bool:
         pass
 
-    def get_all_todo(self) -> dict[int, Todo]:
+    def get_all_todo(self) -> list[Todo]:
         pass
-

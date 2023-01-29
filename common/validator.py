@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any
 import time
 from datetime import datetime
 
@@ -26,12 +26,12 @@ def validateIsNumber(data: Any, fieldName: str):
         return "{} Must be number integer,  and cant be empty'".format(fieldName)
 
 
-def validationErrMessage(valErr: List[str]):
+def validationErrMessage(valErr: list[str]):
     """returning list error as one line message"""
     return ", ".join(list(filter(None, valErr)))
 
 
-def isValidationError(valError: List[str]):
+def isValidationError(valError: list[str]):
     """Validate all error validation"""
     if valError != [None for x in range(len(valError))]:
         return True
