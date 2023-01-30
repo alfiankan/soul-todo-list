@@ -1,4 +1,5 @@
 from abc import ABC
+from typing import Union
 from app.todo.domain import Todo
 
 
@@ -29,7 +30,7 @@ class ITodoUseCases(ABC):
     def get_all_todo(self) -> list[Todo]:
         pass
 
-    def get_by_id(self, todo_id: str) -> Todo:
+    def get_by_id(self, todo_id: str) -> Union[Todo, None]:
         pass
 
     def update_by_id(self, title: str, description: str, todo_id: str) -> bool:

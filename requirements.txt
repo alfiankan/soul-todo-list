@@ -5,3 +5,5 @@ flask
 requests
 faker
 pytest
+flask-swagger-ui
+python-dotenv

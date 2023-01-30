@@ -1,5 +1,5 @@
 import uuid
-
+from typing import Union
 from app.todo.ports import ITodoUseCases, ITodoRepository
 from app.todo.domain import Todo
 from datetime import datetime
@@ -26,8 +26,11 @@ class TodoUseCase(ITodoUseCases):
     def get_all_todo(self) -> list[Todo]:
         return list(filter(lambda todo: todo.deleted_at is None , list(self.todo_repository.get_all().values())))
 
-    def get_by_id(self, todo_id: int) -> Todo:
-        return self.todo_repository.get_by_id(todo_id)
+    def get_by_id(self, todo_id: int) -> Union[Todo, None]:
+        todo = self.todo_repository.get_by_id(todo_id)
+        if todo.deleted_at is not None:
+            return None
+        return todo
 
     def update_by_id(self, title: str, description: str, todo_id: str) -> bool:
         todo = Todo(
