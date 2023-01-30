@@ -16,6 +16,4 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 RUN python3 -m pip install -r requirements.txt
 
-ENV PORT=5000
-
 CMD ["make", "run"]
