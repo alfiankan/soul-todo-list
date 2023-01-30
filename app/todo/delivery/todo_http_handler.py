@@ -5,6 +5,10 @@ from common.validator import validateIsTypeValid, validateIsNotEmpty, isValidati
 
 
 class TodoHttpHandler:
+    """
+    handler and router for Todo
+    Attributes
+    """
     def __init__(self, todo_usecase: ITodoUseCases, http_server: Flask):
         self.todo_usecase = todo_usecase
         self.http_server = http_server
@@ -123,6 +127,9 @@ class TodoHttpHandler:
             return BaseJsonResponse.internal_server_error()
 
     def handle(self):
+        """
+        todo api routers
+        """
         @self.http_server.route('/todo', methods=['POST'])
         def create_todo():
             return self.handle_create_todo()

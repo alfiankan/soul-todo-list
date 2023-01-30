@@ -42,7 +42,7 @@ def validateIsmatchDateFormat(date: str, dateFormat: str, fieldName: str, readab
     """Validate date format from string"""
     try:
         # convert string year.moth to timestamp
-        sinceTimeStamp = time.mktime(datetime.strptime(date, dateFormat).timetuple())
+        _ = time.mktime(datetime.strptime(date, dateFormat).timetuple())
         return None
     except ValueError:
         return "{} Must folow date format {}".format(fieldName, readableFormat)

@@ -4,6 +4,9 @@ from app.todo.domain import Todo
 
 
 class ITodoRepository(ABC):
+    """
+    ports handle data layer
+    """
     def save(self, todo: Todo) -> bool:
         pass
 
@@ -24,6 +27,9 @@ class ITodoRepository(ABC):
 
 
 class ITodoUseCases(ABC):
+    """
+    ports handle businees logic
+    """
     def create_todo(self, title: str, description: str) -> bool:
         pass
 
