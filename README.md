@@ -1,6 +1,8 @@
 
 # Soul Todo API
 
+![Untitled Diagram drawio (8)](https://user-images.githubusercontent.com/40946917/215370506-340d233c-102b-4611-9c04-6458acb7e1d2.png)
+
 ## Architectural Design
 
   - this application adopts a clean architecture and hexagonal design with some modification. the main layer is repository, usecase, and delivery
